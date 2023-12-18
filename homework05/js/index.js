@@ -3,15 +3,23 @@ document.addEventListener('DOMContentLoaded', function () {
 	const newElement = document.createElement('div');
 	newElement.classList.add('new-element');
 
-	textBlock.addEventListener('mouseenter', function () {
-		textBlock.insertAdjacentElement('afterend', newElement);
-		newElement.classList.add('show');
-		newElement.style.display = 'block';
+	function toggleVisibility(isVisible) {
+		if (isVisible) {
+			textBlock.insertAdjacentElement('afterend', newElement);
+			newElement.classList.add('show');
+			newElement.style.display = 'block';
+		} else {
+			newElement.classList.remove('show');
+			newElement.style.display = 'none';
+		}
+	}
 
+	textBlock.addEventListener('mouseenter', function () {
+		toggleVisibility(true);
 	});
 
 	textBlock.addEventListener('mouseleave', function () {
-		newElement.classList.remove('show');
-		newElement.style.display = 'none';
+		toggleVisibility(false);
 	});
 });
+
